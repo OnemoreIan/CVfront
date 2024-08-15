@@ -38,17 +38,16 @@ export class CompModulos extends LitElement{
         .cartaDe{
             border-radius: 3rem 3rem 2px 3rem;
         }
-        .ajusteh{
-            height: fit-content;
-        }
         .ajustew{
             width: 90%;
         }
 
-        .mi{
+        .espacioComp{
             height: 90%;
             width: 90%;
-            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         @keyframes colorChange {
@@ -94,15 +93,15 @@ export class CompModulos extends LitElement{
                 ${this.titulo()}
 
                 <div class="cartaIz cartaDe">
-                    <comp-mi class="mi"></comp-mi>
+                    <comp-mi class="espacioComp"></comp-mi>
                 </div>
                 
-                <div class="cartaIz ajusteh">
-                    <comp-inter class="ajustew"></comp-inter>
+                <div class="cartaIz ">
+                    <comp-inter class="espacioComp"></comp-inter>
                 </div>
                 
                 <div class="cartaIz cartaDe">
-                    <comp-datos></comp-datos>
+                    <comp-datos class="espacioComp"></comp-datos>
                 </div>
             </div>
         `
