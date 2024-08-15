@@ -3,35 +3,42 @@ import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/co
 export class CompMi extends LitElement {
 
     static properties = {
-        _visible: { type: Boolean }
+        _visible: { state: true }
     }
 
     static styles = css`
+        
         .contenedor{
-            height: 100%;
+            text-align: center;
+            transition: all 0.5s;
             width: 100%;
-            background-color: green;
+            height: 3rem;
+            overflow: hidden;
+        }
+        .contenedor:hover{
+            height: auto;
+            width: 100%;
             display: flex;
             flex-flow: column;
+            justify-content: space-between;
             align-items: center;
+            gap: 5px;
         }
         .texto{
+            width:80%;
             text-align: justify;
-            width: 80%;
             margin: 3px 0;
+            font-size: 1.1rem;
             color: rgb(194, 222, 255);
             text-shadow: #333 1px 1px;
         }
-        .boton{
-            cursor: pointer; 
-            background-color: transparent;
-            color: #FFFFFF;
-            border: none;
+        .textUl{
+            padding-bottom: 5px;
         }
-        .boton:active{
-            background-color: transparent;
-            box-shadow: none;
-            color: #949090;
+        .cabecera{
+            text-align: center;
+            color: #FFFFFF;
+
         }
 
     `;
@@ -47,16 +54,16 @@ export class CompMi extends LitElement {
 
     misGustos(){
         return html`
-            <div class="texto" ?hidden=${!this._visible}>
+            <div class="texto">
                 Tengo una preferencia por practicar deportes,
                 principal usando la bicicleta para las piernas.
             </div>
-            <div class="texto" ?hidden=${!this._visible}>
+            <div class="texto">
                 Si bien tengo un gusto por la actividad fisica, 
                 tambien es por la programacion y por una razon muy simple 
                 "Si puedes imaginarlo puedes programarlo"
             </div>
-            <div class="texto" ?hidden=${!this._visible}>
+            <div class="texto textUl">
                 Lo unico de lo que me considero culpable seria que si me llega 
                 a costar trabajo un tema, no me rendire el entenderlo
             </div>
@@ -65,10 +72,8 @@ export class CompMi extends LitElement {
 
     unPocoDeMiContenido() {
         return html`
-                <button class="boton" @click="${() => (this._visible) ? this._visible = false : this._visible = true}">
-                    <h3>Un poco de mi</h3>
-                </button>
-                ${this.misGustos()}
+            <p class="cabecera">Un poco de mi</p>
+            ${this.misGustos()}
         `;
     }
 
@@ -76,7 +81,7 @@ export class CompMi extends LitElement {
     render() {
         return html`
             <div class="contenedor">
-            ${this.unPocoDeMiContenido()}
+                ${this.unPocoDeMiContenido()}
             </div>
         `;
     }

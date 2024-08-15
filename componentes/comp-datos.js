@@ -7,10 +7,33 @@ export class CompDatos extends LitElement {
     }
 
     static styles = css`
-        .img{
-            heigth: 10px;
-            width: 10px;
+
+        *{
+            color: beige;
         }
+
+        .espacio{
+            text-align: center;
+            width: 100%;
+            transition: all 0.5s;
+            height: 3rem;
+            overflow: hidden;
+        }
+        .espacio:hover{
+            height: auto;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            overflow: auto;
+        }
+
+        .img{
+            heigth: 1.5rem;
+            width: 1.5rem;
+        }
+        
     `;
 
     constructor(){
@@ -20,30 +43,37 @@ export class CompDatos extends LitElement {
 
     firstUpdated(){
         this.urlPerro = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fc.tenor.com%2FGce3OKSXeQIAAAAC%2Fperro-bailando.gif&f=1&nofb=1&ipt=e30220acbcc9259aa31652122b5612a19fc10c6decc8b6071f74730e60571201&ipo=images";
+        fetch("https://api-blue-archive.vercel.app/api/characters")
+            .then(resp => resp.json())
+            .then(resp => {
+                console.log(resp);
+            })
+            .catch(e => {console.log(e);
+            })
     }
+
+
 
     datosGenerales(){
         return html`
-            <div>
-                <p>numero de empleado: </p>
-                <p>correo: </p>
-                <p>Animal favorito: perro</p>
-
-            </div>
+            <p>Mi contacto</p>
+            <p>Numero de empleado: </p>
+            <p>Correo empresarial: idelrazo@emal.nttdata.com</p>
+            <p>Animal favorito: dogos ${this.perro()}</p>
         `;
     }
 
-    despedida(){
+    perro(){
         return html`
-            
             <img class="img" src="${this.urlPerro}" alt="perro" >
         `
     }
 
     render() {
         return html`
-            ${this.datosGenerales()}
-            Soy los datos
+            <div class="espacio">
+                ${this.datosGenerales()}
+            </div>
         `;
     }
 }
